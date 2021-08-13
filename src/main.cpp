@@ -47,8 +47,8 @@ void DrawAQuad()
     
     // Drawing shapes
     glBegin(GL_LINES);
-    glVertex2f(.25,0.25);
-    glVertex2f(.75,.75); //! the vertex to draw a line
+    glVertex3f(.25,0.25, 0);
+    glVertex3f(.75,.75, 0); //! the vertex to draw a line
     
     
     
