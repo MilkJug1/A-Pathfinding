@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
             DrawAQuad();
             glXSwapBuffers(dpy, win);
         }
-        else if(xev.type == f)
+        else if(xev.type == f)  //* closes the program when you hit f or any kind of character if you have defined it.
         {
             glXMakeCurrent(dpy, None, NULL);
             glXDestroyContext(dpy, glc);
