@@ -16,6 +16,7 @@ TO COMPILE USE
 #include <X11/Xlib.h>
 #include <GL/gl.h>
 #include <GL/glx.h>
+#include <vector>
 #include <GL/glu.h>
 
 // variables for completness
