@@ -18,7 +18,6 @@ TO COMPILE USE
 #include <GL/glx.h>
 #include <vector>
 #include <GL/glu.h>
-
 // variables for completness
 Display *dpy;
 Window root;
@@ -31,20 +30,17 @@ GLXContext glc;
 XWindowAttributes gwa;
 XEvent xev;
 
-
-// defining a key press to make it so when you hit this button it closes the program.
-char f(KeyPress);
-
 // Definding A key on the keyboard that is to make the program quit
 char l(KeyPress);
+
 
 
 
 // drawing the actual quad
 void DrawALine()
 {
-    glClearColor(1.0, 1.0, 1.0, 1.0);   // we clear the screen
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // and we add a buffer to make the screen white
+    glClearColor(1.0, 1.0, 1.0, 1.0);   //* we clear the screen
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //* and we add a buffer to make the screen white
 
    // glMatrixMode(GL_PROJECTION);
     //glLoadIdentity();
@@ -58,7 +54,8 @@ void DrawALine()
     glBegin(GL_LINES);
     glVertex3f(20, 20, 0); // the first vertex to draw a line
     glVertex3f(-10, -10, 1); // the last one to make a line.
-    glVertex3f(10, 10, 0); //? supposed to change the thickness but isn't working 
+    glLineWidth((GLfloat)2); //? hope this changes thickness
+// Maximum supported line width is in lineWidthRange[1].
     
     
     glEnd();
@@ -100,7 +97,7 @@ int main(int argc, char *argv[])
     swa.event_mask = ExposureMask | KeyPressMask;
     win = XCreateWindow(dpy, root, 0, 0, 600, 600, 0, vi->depth, InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
     XMapWindow(dpy, win);
-    XStoreName(dpy, win, "A*PathFinding in C"); //the main window and the title for it.
+    XStoreName(dpy, win, "A*PathFinding in CPP"); //the main window and the title for it.
 
     glc = glXCreateContext(dpy, vi, NULL, GL_TRUE);
     glXMakeCurrent(dpy, win, glc);
@@ -114,18 +111,10 @@ int main(int argc, char *argv[])
         if (xev.type == Expose)
         {
             XGetWindowAttributes(dpy, win, &gwa);
-            glViewport(0, 0, gwa.width, gwa.height);
+            glViewport(0, -6, gwa.width, gwa.height);
             DrawALine();
             glXSwapBuffers(dpy, win);
         }
-        else if(xev.type == l)  //* closes the program when you hit l or any kind of character if you have defined it.
-        {
-            glXMakeCurrent(dpy, None, NULL);
-            glXDestroyContext(dpy, glc);
-            XDestroyWindow(dpy, win);
-            XCloseDisplay(dpy);
-            exit(0);
-        }
-    }
+  }
 } /* this closes while(1) { */
  /* this is the } which closes int main(int argc, char *argv[]) { */
