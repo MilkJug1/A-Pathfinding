@@ -6,5 +6,5 @@ with some tinkering here and there
 
 To compile do
 ```sh
-gcc -o quad quad.c -lX11 -lGL -lGLU
+gcc -o main main.cpp -lX11 -lGL -lGLU
 ```
