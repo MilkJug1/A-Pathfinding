@@ -30,6 +30,7 @@ GLXContext glc;
 XWindowAttributes gwa;
 XEvent xev;
 
+char f(KeyPress);
 
 // drawing the actual quad
 void DrawAQuad()
@@ -108,6 +109,14 @@ int main(int argc, char *argv[])
             glViewport(0, 0, gwa.width, gwa.height);
             DrawAQuad();
             glXSwapBuffers(dpy, win);
+        }
+        else if(xev.type == f)
+        {
+            glXMakeCurrent(dpy, None, NULL);
+            glXDestroyContext(dpy, glc);
+            XDestroyWindow(dpy, win);
+            XCloseDisplay(dpy);
+            exit(0);
         }
     }
 } /* this closes while(1) { */
