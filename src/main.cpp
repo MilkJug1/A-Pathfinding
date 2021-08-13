@@ -16,6 +16,7 @@ TO COMPILE USE
 #include <X11/Xlib.h>
 #include <GL/gl.h>
 #include <GL/glx.h>
+#include <vector>
 #include <GL/glu.h>
 
 // variables for completness
@@ -30,35 +31,41 @@ GLXContext glc;
 XWindowAttributes gwa;
 XEvent xev;
 
+
 // defining a key press to make it so when you hit this button it closes the program.
 char f(KeyPress);
 
+// Definding A key on the keyboard that is to make the program quit
+char l(KeyPress);
+
+
+
 // drawing the actual quad
-void DrawAQuad()
+void DrawALine()
 {
-    glClearColor(1.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(1.0, 1.0, 1.0, 1.0);   // we clear the screen
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // and we add a buffer to make the screen white
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-1., 1., -1., 1., 1., 20.);
+   // glMatrixMode(GL_PROJECTION);
+    //glLoadIdentity();
+    //glOrtho(-1., 1., -1., 1., 1., 20.);
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt(0., 0., 10., 0., 0., 0., 0., 1., 0.);
+    //glMatrixMode(GL_MODELVIEW);
+    //glLoadIdentity();
+    //gluLookAt(0., 0., 10., 0., 0., 0., 0., 1., 0.);
     
     // Drawing shapes
     glBegin(GL_LINES);
-    glVertex3f(.25,0.25, 0);
-    glVertex3f(.75,.75, 0); //! the vertex to draw a line
-    
+    glVertex3f(20, 20, 0); // the first vertex to draw a line
+    glVertex3f(-10, -10, 1); // the last one to make a line.
+    glVertex3f(10, 10, 0); //? supposed to change the thickness but isn't working 
     
     
     glEnd();
 
     // Colors
-    glColor3f(1., 0., 0.);  //! The color to define the quad. Goes it goes RGB for color
-    glColor3f(0., 1., 0.);
+    glColor3f(0., 0., 0.);  //! The color to define the quad or line . Goes it goes RGB for color
+    glColor3f(0., 0., 0.);
     
     
 
@@ -75,7 +82,7 @@ int main(int argc, char *argv[])
         exit(0);
     }
 
-    root = DefaultRootWindow(dpy);
+    root = DefaultRootWindow(dpy); // we send the display out 
 
     vi = glXChooseVisual(dpy, 0, att);
 
@@ -108,10 +115,10 @@ int main(int argc, char *argv[])
         {
             XGetWindowAttributes(dpy, win, &gwa);
             glViewport(0, 0, gwa.width, gwa.height);
-            DrawAQuad();
+            DrawALine();
             glXSwapBuffers(dpy, win);
         }
-        else if(xev.type == f)  //* closes the program when you hit f or any kind of character if you have defined it.
+        else if(xev.type == l)  //* closes the program when you hit l or any kind of character if you have defined it.
         {
             glXMakeCurrent(dpy, None, NULL);
             glXDestroyContext(dpy, glc);
