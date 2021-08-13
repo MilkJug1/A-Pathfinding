@@ -30,26 +30,27 @@ GLXContext glc;
 XWindowAttributes gwa;
 XEvent xev;
 
-char f(KeyPress);
+// Definding A key on the keyboard that is to make the program quit
+char l(KeyPress);
 
 // drawing the actual quad
-void DrawAQuad()
+void DrawALine()
 {
     glClearColor(1.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-1., 1., -1., 1., 1., 20.);
+   // glMatrixMode(GL_PROJECTION);
+    //glLoadIdentity();
+    //glOrtho(-1., 1., -1., 1., 1., 20.);
 
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt(0., 0., 10., 0., 0., 0., 0., 1., 0.);
+    //glMatrixMode(GL_MODELVIEW);
+    //glLoadIdentity();
+    //gluLookAt(0., 0., 10., 0., 0., 0., 0., 1., 0.);
     
     // Drawing shapes
     glBegin(GL_LINES);
-    glVertex3f(.25,0.25, 0);
-    glVertex3f(.75,.75, 0); //! the vertex to draw a line
+    glVertex2f(10, 10);
+    glVertex2f(-10, -10); //! the vertex to draw a line
     
     
     
@@ -107,10 +108,10 @@ int main(int argc, char *argv[])
         {
             XGetWindowAttributes(dpy, win, &gwa);
             glViewport(0, 0, gwa.width, gwa.height);
-            DrawAQuad();
+            DrawALine();
             glXSwapBuffers(dpy, win);
         }
-        else if(xev.type == f)  //* closes the program when you hit f or any kind of character if you have defined it.
+        else if(xev.type == l)  //* closes the program when you hit l or any kind of character if you have defined it.
         {
             glXMakeCurrent(dpy, None, NULL);
             glXDestroyContext(dpy, glc);
