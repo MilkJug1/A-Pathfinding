@@ -34,6 +34,7 @@ XEvent xev;
 // Definding A key on the keyboard that is to make the program quit
 char l(KeyPress);
 
+
 // drawing the actual quad
 void DrawALine()
 {
@@ -50,16 +51,16 @@ void DrawALine()
     
     // Drawing shapes
     glBegin(GL_LINES);
-    glVertex2f(10, 10);
-    glVertex2f(-10, -10); //! the vertex to draw a line
-    
+    glVertex3f(20, 20, 0);
+    glVertex3f(-10, -10, 1); //! the vertex to draw a line
+    glVertex3f(10, 10, 0);
     
     
     glEnd();
 
     // Colors
-    glColor3f(1., 0., 0.);  //! The color to define the quad. Goes it goes RGB for color
-    glColor3f(0., 1., 0.);
+    glColor3f(0., 0., 0.);  //! The color to define the quad. Goes it goes RGB for color
+    glColor3f(0., 0., 0.);
     
     
 
