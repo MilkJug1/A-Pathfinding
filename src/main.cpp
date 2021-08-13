@@ -30,6 +30,7 @@ GLXContext glc;
 XWindowAttributes gwa;
 XEvent xev;
 
+// defining a key press to make it so when you hit this button it closes the program.
 char f(KeyPress);
 
 // drawing the actual quad
