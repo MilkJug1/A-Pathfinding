@@ -8,8 +8,6 @@ TO COMPILE USE
 ! gcc -o main main.cpp -lX11 -lGL -lGLU
 ========================================
 */
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <X11/X.h>
@@ -18,6 +16,8 @@ TO COMPILE USE
 #include <GL/glx.h>
 #include <vector>
 #include <GL/glu.h>
+
+
 // variables for completness
 Display *dpy;
 Window root;
@@ -31,18 +31,15 @@ XWindowAttributes gwa;
 XEvent xev;
 
 // Definding A key on the keyboard that is to make the program quit
-char l(KeyPress);
+char l;
 
-
-
-
-// drawing the actual quad
+// drawing the actual line
 void DrawALine()
 {
     glClearColor(1.0, 1.0, 1.0, 1.0);   //* we clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //* and we add a buffer to make the screen white
 
-   // glMatrixMode(GL_PROJECTION);
+    //glMatrixMode(GL_PROJECTION);
     //glLoadIdentity();
     //glOrtho(-1., 1., -1., 1., 1., 20.);
 
@@ -54,10 +51,8 @@ void DrawALine()
     glBegin(GL_LINES);
     glVertex3f(20, 20, 0); // the first vertex to draw a line
     glVertex3f(-10, -10, 1); // the last one to make a line.
-    glLineWidth((GLfloat)2); //? hope this changes thickness
+    glLineWidth(100.75); //? hope this changes thickness
 // Maximum supported line width is in lineWidthRange[1].
-    
-    
     glEnd();
 
     // Colors
@@ -114,7 +109,14 @@ int main(int argc, char *argv[])
             glViewport(0, -6, gwa.width, gwa.height);
             DrawALine();
             glXSwapBuffers(dpy, win);
+        } else if(xev.type == l)  //* closes the program when you hit l or any kind of character if you have defined it.
+        {
+            glXMakeCurrent(dpy, None, NULL);
+            glXDestroyContext(dpy, glc);
+            XDestroyWindow(dpy, win);
+            XCloseDisplay(dpy);
+            exit(0);
         }
-  }
+    }
 } /* this closes while(1) { */
  /* this is the } which closes int main(int argc, char *argv[]) { */
