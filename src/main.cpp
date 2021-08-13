@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
         exit(0);
     }
 
-    root = DefaultRootWindow(dpy);
+    root = DefaultRootWindow(dpy); // we send the display out 
 
     vi = glXChooseVisual(dpy, 0, att);
 
