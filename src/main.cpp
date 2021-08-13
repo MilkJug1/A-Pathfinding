@@ -51,15 +51,15 @@ void DrawALine()
     
     // Drawing shapes
     glBegin(GL_LINES);
-    glVertex3f(20, 20, 0);
-    glVertex3f(-10, -10, 1); //! the vertex to draw a line
-    glVertex3f(10, 10, 0);
+    glVertex3f(20, 20, 0); // the first vertex to draw a line
+    glVertex3f(-10, -10, 1); // the last one to make a line.
+    glVertex3f(10, 10, 0); //? supposed to change the thickness but isn't working 
     
     
     glEnd();
 
     // Colors
-    glColor3f(0., 0., 0.);  //! The color to define the quad. Goes it goes RGB for color
+    glColor3f(0., 0., 0.);  //! The color to define the quad or line . Goes it goes RGB for color
     glColor3f(0., 0., 0.);
     
     
