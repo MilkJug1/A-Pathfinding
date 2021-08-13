@@ -36,8 +36,8 @@ char l(KeyPress);
 // drawing the actual quad
 void DrawALine()
 {
-    glClearColor(1.0, 1.0, 1.0, 1.0);
-    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(1.0, 1.0, 1.0, 1.0);   // we clear the screen
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // and we add a buffer to make the screen white
 
    // glMatrixMode(GL_PROJECTION);
     //glLoadIdentity();
