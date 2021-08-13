@@ -44,17 +44,22 @@ void DrawAQuad()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(0., 0., 10., 0., 0., 0., 0., 1., 0.);
-
-    glBegin(GL_QUADS);
-    glColor3f(0., 0., 0.);  //! The color to define the quad. Goes it goes RGB for color
-    glVertex3f(-.50, -.50, 0.); //! the vertex to draw a quad
-    glColor3f(0., 0., 0.);
-    glVertex3f(-50, -50, 0.);
-    glColor3f(0., 0., 0.);
-    glVertex3f(.50, .50, 0.);
-    glColor3f(0., 0., 0.);
-    glVertex3f(-.50, .50, 0.);
+    
+    // Drawing shapes
+    glBegin(GL_LINES);
+    glVertex2f(.25,0.25);
+    glVertex2f(.75,.75); //! the vertex to draw a line
+    
+    
+    
     glEnd();
+
+    // Colors
+    glColor3f(1., 0., 0.);  //! The color to define the quad. Goes it goes RGB for color
+    glColor3f(0., 1., 0.);
+    
+    
+
 }
 
 int main(int argc, char *argv[])
@@ -72,7 +77,7 @@ int main(int argc, char *argv[])
 
     vi = glXChooseVisual(dpy, 0, att);
 
-    if (vi == NULL) 
+    if (vi == NULL) //if visual isn't working then print null to terminal
     {
         printf("\n\tno appropriate visual found\n\n");
         exit(0);
@@ -86,7 +91,7 @@ int main(int argc, char *argv[])
     swa.event_mask = ExposureMask | KeyPressMask;
     win = XCreateWindow(dpy, root, 0, 0, 600, 600, 0, vi->depth, InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
     XMapWindow(dpy, win);
-    XStoreName(dpy, win, "A*PathFinding in C");
+    XStoreName(dpy, win, "A*PathFinding in C"); //the main window and the title for it.
 
     glc = glXCreateContext(dpy, vi, NULL, GL_TRUE);
     glXMakeCurrent(dpy, win, glc);
