@@ -8,11 +8,10 @@ TO COMPILE USE
 ! g++ -o main main.cpp -lglut -lGL -lGLU
 ========================================
 */
-#include <GL/glut.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
 #include "grid.h"
 #include "drawgrid.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 
 #define COLUMUS 40
@@ -26,28 +25,22 @@ void init()
 }
 
 
-// drawing the actual line
-void Grid()
+int main()
 {
-    glClearColor(1.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    drawGrid();
-    glEnable(GL_LINE_SMOOTH);
-    glOrtho(-1., 1., COLUMUS, 1., 1., ROWS);
-}
+    sf::Window* window(sf::VideoMode(800, 600), "Test");
 
-int main(int argc, char *argv[])
-{
-    glClearColor(1.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE);
-   // glutInitWindowSize(500, 500);
-   // glutInitWindowPosition(100, 100);
-    glutCreateWindow("A*PathFinding");
-    glutDisplayFunc(Grid);
-    glutMainLoop();
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if(event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+        }
+    }
 
+
+    return 0;
 }
-/* this closes while(1) { */
- /* this is the } which closes int main(int argc, char *argv[]) { */
