@@ -1,7 +1,8 @@
 # A* PathFinding 
-This project is built in C++ and uses GL and the X server to help display since this was built on linux.
+This project is built in C++ and uses SFML to create the display and handle the other display stuff
 
-Project is built using OpenGL and FreeGlut/Glut
+
+Project is built using SFML
 
 To compile do
 ```sh
