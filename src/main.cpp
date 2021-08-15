@@ -12,6 +12,9 @@ TO COMPILE USE
 #include "drawgrid.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <algorithm>
+#include <math.h>
+#include <SFML/Audio.hpp>
 
 
 #define COLUMUS 40
