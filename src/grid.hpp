@@ -1,5 +1,5 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+#include "SFML-2.5.1/include/SFML/Graphics.hpp"
+#include "SFML-2.5.1/include/SFML/Window.hpp"
 
 class TileMap : public sf::Drawable, public sf::Transformable
 {
@@ -13,7 +13,7 @@ public:
 
         // resize the vertex array to fit the level size
         m_vertices.setPrimitiveType(sf::Quads);
-        m_vertices.resize(width * height * 4);
+        m_vertices.resize(width * height * 8);
 
         // populate the vertex array, with one quad per tile
         for (unsigned int i = 0; i < width; ++i)
