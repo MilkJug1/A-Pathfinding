@@ -5,7 +5,7 @@ Program: AI pathfinding visualization
 ProgramName: A* Pathfinding
 
 TO COMPILE USE 
-! g++ -o main main.cpp -lglut -lGL -lGLU
+! g++ -o main main.cpp -lsfml-graphics -lsfml-window -lsfml-system
 ========================================
 */
 #include <SFML/Graphics.hpp>
@@ -24,21 +24,21 @@ TO COMPILE USE
 int main()
 {
     // create the window
-    sf::RenderWindow window(sf::VideoMode(512, 256), "Tilemap");
+    sf::RenderWindow window(sf::VideoMode(800, 640), "Tilemap");
 
     // define the level with an array of tile indices
     const int level[] =
-    { // 0 is grass, 1 is water, 2 is trees, 3 is stone
+    { // 
         0,0,0,0,0,0,0,0,0,
         1,1,1,1,1,1,1,1,1,
         2,2,2,2,2,2,2,2,2,
         3,3,3,3,3,3,3,3,3,
-        4,4,4,4,4,4,4,4,4,
+    
     };
 
     // create the tilemap from the level definition
     TileMap map;
-    if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 16, 8))
+    if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 53, 42))
         return -1;
 
     // run the main loop
