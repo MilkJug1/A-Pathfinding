@@ -29,16 +29,12 @@ int main()
     // define the level with an array of tile indices
     const int level[] =
     { // 
-        0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,
     
     };
 
     // create the tilemap from the level definition
     TileMap map;
-    if (!map.load("tileset.png", sf::Vector2u(32, 32), level, 32, 32))
+    if (!map.load("1tileset.png", sf::Vector2u(32, 32), level, 32, 16))
         return -1;
 
     // run the main loop
@@ -51,11 +47,16 @@ int main()
             if(event.type == sf::Event::Closed)
                 window.close();
         }
-
+        while (1)
+        {
+            window.clear();
+            window.draw(map);
+            window.display();
+        }
         // draw the map
-        window.clear();
-        window.draw(map);
-        window.display();
+        //window.clear();
+        //window.draw(map);
+        //window.display();
     }
 
     return 0;
